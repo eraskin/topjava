@@ -35,9 +35,6 @@ public class MealsServlet extends HttpServlet {
         );
 
         request.setAttribute("meals", UserMealsUtil.getUserMealsWithExceeded(mealList, 2000));
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/mealsList.jsp");
-        dispatcher.forward(request, response);
-
+        request.getRequestDispatcher("/mealsList.jsp").forward(request, response);
     }
 }
