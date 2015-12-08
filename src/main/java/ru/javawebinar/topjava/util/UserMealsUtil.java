@@ -30,7 +30,9 @@ public class UserMealsUtil {
         System.out.println(getFilteredMealsWithExceededByCycle(mealList, LocalTime.of(7, 0), LocalTime.of(12, 0), 2000));
     }
 
-    public static List<UserMealWithExceed> getUserMealsWithExceeded(List<UserMeal> mealList, int caloriesPerDay) {
+    public static List<UserMealWithExceed> getUserMealsWithExceeded(Map<Integer, UserMeal> mealsMap, int caloriesPerDay) {
+        List<UserMeal> mealList = new ArrayList<>(mealsMap.values());
+
         Map<LocalDate, Integer> caloriesSumByDate = mealList.stream().collect(Collectors.groupingBy(um -> um.getDateTime().toLocalDate(),
                 Collectors.summingInt(UserMeal::getCalories)));
 
