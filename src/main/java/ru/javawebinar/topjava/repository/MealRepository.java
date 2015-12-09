@@ -1,9 +1,7 @@
 package ru.javawebinar.topjava.repository;
 
 import ru.javawebinar.topjava.model.UserMeal;
-import ru.javawebinar.topjava.model.UserMealWithExceed;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,5 +9,8 @@ import java.util.Map;
  */
 public interface MealRepository {
 
-    Map<Integer, UserMeal> getAllMeals();
+    Map<Integer, UserMeal> getAll();
+    void delete(int id);
+    UserMeal get(int id);
+    void save(UserMeal meal);
 }

@@ -24,6 +24,7 @@
 </head>
 <body>
 <h2>Подсчет калорий</h2>
+<a href="meals?action=create">Добавить еду</a>
 
 <br>
 
@@ -34,6 +35,8 @@
             <th>День и время</th>
             <th>Калории</th>
             <th>Результат</th>
+            <th></th>
+            <th></th>
         </tr>
 
         <c:forEach items="${meals}" var="meal">
@@ -49,6 +52,8 @@
                 <td><c:if test="${meal.exceed}">Превышено</c:if>
                     <c:if test="${not meal.exceed}">Молодец</c:if>
                 </td>
+                <td><a href="meals?action=update&id=${meal.id}">Редактировать</a></td>
+                <td><a href="meals?action=delete&id=${meal.id}">Удалить</a></td>
             </tr>
         </c:forEach>
 
