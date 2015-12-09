@@ -16,13 +16,11 @@ import java.util.stream.Collectors;
  */
 public class UserMealsUtil {
 
-    public static List<UserMealWithExceed> getUserMealsWithExceeded(Map<Integer, UserMeal> mealsMap, int caloriesPerDay) {
-        List<UserMeal> mealList = new ArrayList<>(mealsMap.values());
-
-        Map<LocalDate, Integer> caloriesSumByDate = mealList.stream().collect(Collectors.groupingBy(um -> um.getDateTime().toLocalDate(),
+    public static List<UserMealWithExceed> getUserMealsWithExceeded(Collection<UserMeal> meals, int caloriesPerDay) {
+        Map<LocalDate, Integer> caloriesSumByDate = meals.stream().collect(Collectors.groupingBy(um -> um.getDateTime().toLocalDate(),
                 Collectors.summingInt(UserMeal::getCalories)));
 
-        return mealList.stream()
+        return meals.stream()
                 .map(um -> new UserMealWithExceed(um.getId(), um.getDateTime(), um.getDescription(), um.getCalories(),
                         caloriesSumByDate.get(um.getDateTime().toLocalDate()) > caloriesPerDay))
                 .collect(Collectors.toList());

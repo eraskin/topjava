@@ -4,6 +4,7 @@ import ru.javawebinar.topjava.model.UserMeal;
 
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -27,8 +28,8 @@ public class InMemoryMealRepo implements MealRepository {
     }
 
     @Override
-    public Map<Integer, UserMeal> getAll() {
-        return mealsMap;
+    public Collection<UserMeal> getAll() {
+        return mealsMap.values();
     }
 
     @Override
